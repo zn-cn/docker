@@ -1,0 +1,12 @@
+# Python2 常用镜像
+
+pymongo==3.6.1
+Flask==0.12.2
+bcrypt==3.1.4
+PyJWT==1.5.3
+PyMySQL==0.8.0
+redis==2.10.6
+requests==2.18.4
+Werkzeug==0.14.1
+
+Flask-Mail
