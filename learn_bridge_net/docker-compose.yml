@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    learn_docker:
+        build: .
+        volumes:
+            - ./logs:/app/logs
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - "3031:3031"
+        environment:
+            - TZ=Asia/Shanghai
+        container_name: learn_docker_app
+        depends_on: 
+            - mongo
+        command: uwsgi --ini uwsgi/uwsgi.ini
+    mongo:
+        image: mongo:3.6.3
+        expose:
+            - "27017"
+        environment:
+            - TZ=Asia/Shanghai
+        container_name: learn_docker_mongo
+        volumes:
+            - ./db:/data/db
+            - /etc/localtime:/etc/localtime:ro
