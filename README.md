@@ -61,8 +61,6 @@ python的alpine版本中不包含C Compile，而安装uwsgi的时候需要用到
 
 官方说WORKDIR适用于 CMD、RUN、COPY、ADD、ENTRYPOINT等命令，但是发现其实有时候还是不行的，所以尽量用绝对路径，CMD、ENTRYPOINT可以用相对路径
 
-##### 4. uwsgi尽量使用端口映射不用socket文件
-
 
 ### 二、Docker CE安装
 

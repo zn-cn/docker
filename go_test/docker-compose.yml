@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    go_test:
+        build: .
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - "1323:1323"
+        environment:
+            - TZ=Asia/Shanghai
+        container_name: go_test_app
+        entrypoint: [ "bin/main" ]
