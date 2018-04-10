@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  primary:
+    image: mongo:3.6.3
+    environment:
+      - TZ=Asia/Shanghai
+    expose:
+        - "27017"
+    volumes:
+      - ./rs0:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    command: mongod  --replSet myset --oplogSize 128
+  secondary:
+    image: mongo:3.6.3
+    environment:
+      - TZ=Asia/Shanghai
+    expose:
+        - "27017"
+    volumes:
+      - ./rs1:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    command: mongod  --replSet myset --oplogSize 128
+  arbiter:
+    image: mongo:3.6.3
+    environment:
+      - TZ=Asia/Shanghai
+    expose:
+        - "27017"
+    command: mongod  --replSet myset --smallfiles --oplogSize 128
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
