@@ -1,0 +1,8 @@
+sanic
+pymongo
+PyMySQL
+redis
+pyjwt
+bcrypt
+Werkzeug
+requests
