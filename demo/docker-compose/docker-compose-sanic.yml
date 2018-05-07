@@ -1,26 +1,30 @@
 version: '3'
 
 services:
-    learn_docker:
+    web:
         build: .
         volumes:
-            - ./logs:/app/logs
             - /etc/localtime:/etc/localtime:ro
+            - ./log:/app/log
         ports:
             - "3031:3031"
         environment:
             - TZ=Asia/Shanghai
-        container_name: learn_docker_app
-        depends_on: 
+            - WEB_ENV=dev
+            - PORT=3031
+            - HOST=0.0.0.0
+        container_name: sanic_scaffold_app
+        depends_on:
             - mongo
-        command: uwsgi --ini uwsgi/uwsgi.ini
+        command: ["-m", "sanic", "main.app", "--host=0.0.0.0", "--port=3031", "--workers=4"]
+        entrypoint: ["python"]
     mongo:
         image: mongo:3.6.3
         expose:
             - "27017"
         environment:
             - TZ=Asia/Shanghai
-        container_name: learn_docker_mongo
+        container_name: sanic_scaffold_mongo
         volumes:
             - ./db:/data/db
             - /etc/localtime:/etc/localtime:ro
